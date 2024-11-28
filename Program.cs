@@ -36,9 +36,9 @@ namespace ICF_Generator
                 Console.WriteLine("\nGenerating JSON...");
                 fileTime.Sort();
                 string json = "[";
-                string systemVersion = "";
-                string sourceVersion = "";
-                string sourceTime = "";
+                string systemVersion = "1.00.00";
+                string sourceVersion = "1.00.00";
+                string sourceTime = "2024-01-01T00:00:00";
                 for (int i = 0; i < fileTime.Count; i++)
                 {
                     foreach (string _file in fileName)
@@ -102,11 +102,17 @@ namespace ICF_Generator
                 Console.WriteLine("\nICF json: {0}", Environment.CurrentDirectory + "\\ICF.json");
                 Console.WriteLine("ICF file: {0}", Environment.CurrentDirectory + "\\ICF");
                 Console.WriteLine("ICF generate complete.");
+                if (!args.Contains("-silent"))
+                {
+                    Console.ReadKey();
+                }
             }
             else
             {
-                Console.WriteLine("ERROR: No directory selected");
-                Console.WriteLine("Usage: ICF-Generator.exe [AMFS Path]");
+                Console.WriteLine("ERROR: No AMFS directory selected");
+                Console.WriteLine("Usage: ICF-Generator.exe [AMFS Path] [args]");
+                Console.WriteLine("args: \n   [-silent] Exit after generation");
+                Console.ReadKey();
             }
         }
 
